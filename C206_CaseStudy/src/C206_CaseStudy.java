@@ -1,12 +1,148 @@
 import java.util.ArrayList;
 
 public class C206_CaseStudy {
+	private static final int ADMIN_OPTION_QUIT = 13;
+	private static final int PARENT_OPTION_QUIT = 6;
+	private static final int STUDENT_OPTION_QUIT = 5;
+	private static int inputOption = 0;
 
-	private static final int OPTION_QUIT = 5;
+	private static final int OPTION_QUIT = 3;
 
 	public static void main(String[] args) {
+		ArrayList<Account> accountList = new ArrayList<Account>();
+		accountList.add(new Account("admin", "admin", "admin"));
 		ArrayList<Items> itemList = new ArrayList<Items>();
-// test
+
+		int option = 0;
+		int choice = 0;
+		while (option != OPTION_QUIT) { // this is similar to saying (option != 3)
+			C206_CaseStudy.menu();
+			option = Helper.readInt("Enter an option > "); // prompt user to input an option
+			
+			if (option == 1) { // create an account
+				C206_CaseStudy.createAccount(accountList);
+			} else if (option == 2) { // create login
+				C206_CaseStudy.login(accountList);
+				if (inputOption == -1) {
+					choice = Helper.readInt("Enter menu option > ");
+					while (choice != ADMIN_OPTION_QUIT) {
+						if (choice == 1) {
+
+						} else if (choice == 2) {
+
+						} else if (choice == 3) {
+
+						} else if (choice == 4) {
+							C206_CaseStudy.addMenuItems(itemList);
+							choice = Helper.readInt("Enter Admin options > ");
+						} else if (choice == 5) {
+							C206_CaseStudy.viewMenuItems(itemList);
+							choice = Helper.readInt("Enter Admin option > ");
+						} else if (choice == 6) {
+							C206_CaseStudy.deleteMenuItems(itemList);
+							choice = Helper.readInt("Enter Admin option > ");
+						} else if (choice == 7) {
+
+						} else if (choice == 8) {
+
+						} else if (choice == 9) {
+
+						} else if (choice == 10) {
+
+						} else if (choice == 11) {
+
+						} else if (choice == 12) {
+
+						} else if (choice == 13) {
+						}
+					}
+				} else if (inputOption == -2) {
+					choice = Helper.readInt("Enter menu option > ");
+					while (choice != PARENT_OPTION_QUIT)
+						if (choice == 1) {
+
+						} else if (choice == 2) {
+
+						} else if (choice == 3) {
+
+						} else if (choice == 4) {
+
+						} else if (choice == 5) {
+
+						} else if (choice == 6) {
+							
+						}
+				} else if (inputOption == -3) {
+					while (choice != STUDENT_OPTION_QUIT)
+						if (choice == 1) {
+
+						} else if (choice == 2) {
+
+						} else if (choice == 3) {
+
+						} else if (choice == 4) {
+
+						} else if (choice == 5) {
+
+						}
+				}
+
+			} else if (option == 3) {
+				System.out.println("Bye!");
+			}
+
+		}
+	}
+
+	public static void menu() {
+		C206_CaseStudy.setHeader("WELCOME TO SCHOOL LUNCH BOX MENU ORDERING APP");
+		System.out.println("1. Create new account");
+		System.out.println("2. Login");
+		System.out.println("3. Quit");
+
+	}
+
+	public static void parentMenu() {
+		C206_CaseStudy.setHeader("WELCOME TO SCHOOL LUNCH BOX MENU ORDERING APP");
+		System.out.println("1. View monthly menu");
+		System.out.println("2. Place lunchbox order");
+		System.out.println("3. View lunchbox order");
+		System.out.println("4. View order bill");
+		System.out.println("5. Make payment");
+		System.out.println("6. Quit.");
+	}
+
+	public static void adminMenu() {
+		C206_CaseStudy.setHeader("WELCOME TO SCHOOL LUNCH BOX MENU ORDERING APP");
+		System.out.println("1. Add user account");
+		System.out.println("2. View user account");
+		System.out.println("3. Delete user account");
+		System.out.println("4. Add menu items");
+		System.out.println("5. View menu items");
+		System.out.println("6. Delete menu items");
+		System.out.println("7. Create monthly menu");
+		System.out.println("8. View monthly menu");
+		System.out.println("9. Delete monthly menu");
+		System.out.println("10. Delete/cancel lunch box order");
+		System.out.println("11. Create order bill");
+		System.out.println("12. View order bill");
+		System.out.println("13. Quit.");
+	}
+
+	public static void studentMenu() {
+		C206_CaseStudy.setHeader("WELCOME TO SCHOOL LUNCH BOX MENU ORDERING APP");
+		System.out.println("1. View monthly menu");
+		System.out.println("2. Place lunchbox order");
+		System.out.println("3. View lunchbox order");
+		System.out.println("4. View order bill");
+		System.out.println("5. Quit.");
+	}
+
+	public static void setHeader(String header) {
+		Helper.line(80, "-");
+		System.out.println(header);
+		Helper.line(80, "-");
+	}
 
 	private static void addMenuItems(ArrayList<Items> itemList) {
 
@@ -45,6 +181,7 @@ public class C206_CaseStudy {
 		} else {
 			System.out.println("Items add Failed!");
 		}
+
 	}
 
 	private static void viewMenuItems(ArrayList<Items> itemList) {
@@ -63,12 +200,52 @@ public class C206_CaseStudy {
 
 		int itemID = Helper.readInt("Enter Item ID to delete > ");
 
-		for (Items i : itemList) {
-			if (i.getItemID() == itemID) {
-				itemList.remove(i.getItemID());
+		for (int i = 0; i < itemList.size(); i++) {
+			if (itemID == itemList.get(i).getItemID()) {
+				itemList.remove(i);
 			}
 		}
-		System.out.println(itemList);
-		
+
 	}
+
+	public static void createAccount(ArrayList<Account> accountList) {
+		// prompt user to enter username/password/role
+		String username = Helper.readString("Enter username > ");
+		String password = Helper.readString("Enter password > ");
+		String role = Helper.readString("Enter role (Admin/Parent/Student) > ");
+
+		accountList.add(new Account(username, password, role)); // add into the arrayList
+
+		if (accountList.isEmpty() != true) { // if accountList is empty, it will print "successful"
+			System.out.println("successful");
+		} else { // if accountList is not empty, it will print "failed"
+			System.out.println("failed");
+		}
+	}
+
+	public static void login(ArrayList<Account> accountList) {
+		// prompt user to enter username/password
+		String username = Helper.readString("Enter username > ");
+		String password = Helper.readString("Enter password > ");
+
+		// enhanced for loop
+		for (Account i : accountList) {
+			if (username.equals(i.getUsername()) && password.equals(i.getPassword())
+					&& i.getRole().equalsIgnoreCase("Admin")) {
+				adminMenu();
+				C206_CaseStudy.inputOption = -1;
+			} else if (username.equals(i.getUsername()) && password.equals(i.getPassword())
+					&& i.getRole().equalsIgnoreCase("Parent")) {
+				parentMenu();
+				C206_CaseStudy.inputOption = -2;
+			} else if (username.equals(i.getUsername()) && password.equals(i.getPassword())
+					&& i.getRole().equalsIgnoreCase("Student")) {
+				studentMenu();
+				C206_CaseStudy.inputOption = -3;
+			}
+
+		}
+
+	}
+
 }
