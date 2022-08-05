@@ -9,6 +9,7 @@ public class C206_CaseStudy {
 	private static final int OPTION_QUIT = 3;
 
 	public static void main(String[] args) {
+		
 		ArrayList<Account> accountList = new ArrayList<Account>();
 		accountList.add(new Account("admin", "admin", "admin"));
 		ArrayList<Items> itemList = new ArrayList<Items>();

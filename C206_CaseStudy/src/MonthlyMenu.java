@@ -18,7 +18,7 @@ public class MonthlyMenu {
 		this.western =western;
 		this.asian = asian;
 		this.vegg = vegg;
-		this.d1 = d1;
+		this.d1 =d1;
 		this.d2 = d2;
 		this.f1 = f1;
 		this.f2 = f2;
