@@ -6,7 +6,7 @@ public class C206_CaseStudy {
 
 	public static void main(String[] args) {
 		ArrayList<Items> itemList = new ArrayList<Items>();
-
+// test
 
 	private static void addMenuItems(ArrayList<Items> itemList) {
 
