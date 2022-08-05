@@ -15,7 +15,7 @@ public class MonthlyMenu {
 	public MonthlyMenu(int id,String weekDate,String western,String asian,String vegg,String d1,String d2,String f1,String f2) {
 		this.id = id;
 		this.weekDate = weekDate;
-		this.western = western;
+		this.western =western;
 		this.asian = asian;
 		this.vegg = vegg;
 		this.d1 = d1;

@@ -33,7 +33,7 @@ public class C206_CaseStudy {
 		
 
 		
-
+	}
 	
 	
 	
@@ -53,7 +53,7 @@ public class C206_CaseStudy {
 		return output;
 	}
 	public static void viewAllMonthlyMenu(ArrayList<MonthlyMenu> weeklyList) {
-		C206_CaseStudy.setHeader("View Monthly Menu");
+		
 		String output = String.format("%-10s %-20s %-20s %-30s %-25s %-20s %-20s %-20s %-20s\n","MenuID","Date","Western","Asian",
 				"Vegetarian","Drink 1","Drink 2", "Fruit 1", "Fruit 2");
 		 output += retrieveAllMenu(weeklyList);	
