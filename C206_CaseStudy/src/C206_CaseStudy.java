@@ -9,16 +9,16 @@ public class C206_CaseStudy {
 
 		int option = 0;
 		C206_CaseStudy.menu();
-		while (option != OPTION_QUIT) { //this is similar to saying (option != 3)
-			
-			option = Helper.readInt("Enter an option > "); //prompt user to input an option
-			
-			if (option == 1) { //create an account
+		while (option != OPTION_QUIT) { // this is similar to saying (option != 3)
+
+			option = Helper.readInt("Enter an option > "); // prompt user to input an option
+
+			if (option == 1) { // create an account
 				C206_CaseStudy.createAccount(accountList);
 
-			} else if (option == 2) { //create login
+			} else if (option == 2) { // create login
 				C206_CaseStudy.login(accountList);
-			} else { //to quit the program
+			} else { // to quit the program
 				System.out.println("Bye!");
 			}
 
@@ -72,43 +72,117 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 
-	public static void createAccount(ArrayList<Account> accountList) {
-		//prompt user to enter username/password/role
-		String username = Helper.readString("Enter username > "); 
+
+	public static void viewAllAccount(ArrayList<Account> accountList) {
+		C206_CaseStudy.setHeader("VIEW USER ACCOUNT");
+		String output = String.format("%-25s %-10s %-10s\n", "USERNAME", "PASSWORD", "ROLE");
+		output += retrieveAllUserAccount(accountList);
+		System.out.println(output);
+	}
+
+	public static void deleteAccount(ArrayList<Account> accountList) {
+
+		String username = Helper.readString("Enter username to delete > ");
+		String password = Helper.readString("Enter password to delete > ");
+
+		for (int i = 0; i < accountList.size(); i++) {
+			if (username.equals(accountList.get(i).getUsername())) {
+				if (password.equals(accountList.get(i).getPassword()))
+
+					accountList.remove(i);
+			}
+		}
+
+	}
+
+	// test cases
+	
+	public static String retrieveAllUserAccount(ArrayList<Account> accountList) {
+		String output="";
+        for (int i= 0; i < accountList.size();i++) {
+          output += String.format("%-25s %-10s %-10s\n", accountList.get(i).getUsername(), accountList.get(i).getPassword(),accountList.get(i).getRole());
+        }
+        
+        return output;
+	}
+	
+	public static Account inputAccount() {
+		String username = Helper.readString("Enter username > ");
 		String password = Helper.readString("Enter password > ");
-		String role = Helper.readString("Enter role (Admin/Parent/Student) > "); 
+		String role = Helper.readString("Enter role > ");
 
-		accountList.add(new Account(username, password, role)); //add into the arrayList
+		Account acc = new Account(username, password, role);
+		return acc;
+		
+	}	
+	public static void addAccount(ArrayList<Account> accountList, Account acc) {
 
-		if (accountList.isEmpty() != true) { //if accountList is empty, it will print "successful"
+		accountList.add(acc);
+		
+	}
+
+	public static boolean doDeleteAccount(ArrayList<Account> accountList, String username, String password) {
+
+		boolean isDeleted = false;
+
+		for (int i = 0; i < accountList.size(); i++) {
+
+			String Username = accountList.get(i).getUsername();
+			String Password = accountList.get(i).getPassword();
+
+			if (username.equals(Username) && accountList.get(i).getIsAvailable() == true) {
+				if (password.equals(Password) && accountList.get(i).getIsAvailable() == true) {
+
+					accountList.get(i).setIsAvailable(false);
+					isDeleted = true;
+
+				}
+			
+			}
+
+		}
+		
+		return isDeleted;
+	}
+
+	public static void createAccount(ArrayList<Account> accountList) {
+		// prompt user to enter username/password/role
+		String username = Helper.readString("Enter username > ");
+		String password = Helper.readString("Enter password > ");
+		String role = Helper.readString("Enter role (Admin/Parent/Student) > ");
+
+		accountList.add(new Account(username, password, role)); // add into the arrayList
+
+		if (accountList.isEmpty() != true) { // if accountList is empty, it will print "successful"
 			System.out.println("successful");
-		} else { //if accountList is not empty, it will print "failed"
+		} else { // if accountList is not empty, it will print "failed"
 			System.out.println("failed");
 		}
 	}
-	
-	
 
 	public static void login(ArrayList<Account> accountList) {
-		//prompt user to enter username/password
+		// prompt user to enter username/password
 		String username = Helper.readString("Enter username > ");
 		String password = Helper.readString("Enter password > ");
 
-		//enhanced for loop
+		// enhanced for loop
 		for (Account i : accountList) {
-			if (username.equals(i.getUsername()) && password.equals(i.getPassword()) && i.getRole().equalsIgnoreCase("Admin")) {
+			if (username.equals(i.getUsername()) && password.equals(i.getPassword())
+					&& i.getRole().equalsIgnoreCase("Admin")) {
 				adminMenu();
-				
-			} else if (username.equals(i.getUsername()) && password.equals(i.getPassword()) && i.getRole().equalsIgnoreCase("Parent")) {
+
+			} else if (username.equals(i.getUsername()) && password.equals(i.getPassword())
+					&& i.getRole().equalsIgnoreCase("Parent")) {
 				parentMenu();
-				
-				
-			} else if (username.equals(i.getUsername()) && password.equals(i.getPassword()) && i.getRole().equalsIgnoreCase("Student")) {
+
+			} else if (username.equals(i.getUsername()) && password.equals(i.getPassword())
+					&& i.getRole().equalsIgnoreCase("Student")) {
 				studentMenu();
+
 			}
-			
+
 		}
-		
+
 	}
 
 }

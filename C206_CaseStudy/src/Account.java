@@ -4,6 +4,7 @@ public class Account {
 	private String username;
 	private String password;
 	private String role;
+	private boolean isAvailable;
 	
 	//constructor
 	public Account(String username, String password, String role) {
@@ -35,5 +36,13 @@ public class Account {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	public boolean getIsAvailable() {
+		return isAvailable;
+	}
+
+	public void setIsAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
 	}
 }
