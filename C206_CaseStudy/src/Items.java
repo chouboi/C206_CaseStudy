@@ -1,19 +1,19 @@
 
 public class Items {
- // test
-	public int itemID;
+	public String itemID;
 	public String name;
 	public String category;
-	public double price;
+	public String price;
+	private boolean isAvailable;
 	
-	public Items(int itemID, String name, String category, double price) {
+	public Items(String itemID, String name, String category, String price) {
 		this.itemID = itemID;
 		this.name = name;
 		this.category = category;
 		this.price = price;
 	}
-	
-	public int getItemID() {
+
+	public String getItemID() {
 		return itemID;
 	}
 
@@ -26,10 +26,21 @@ public class Items {
 	}
 
 
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-
+	public String toString(){
+		String output = "";
+		return output;
+	}
+	
+	public boolean getIsAvailable() {
+		return isAvailable;
+	}
+	
+	public void setIsAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
 	
 }
