@@ -10,6 +10,7 @@ public class MonthlyMenu {
 	private String d2;
 	private String f1;
 	private String f2;
+
 	
 	
 	public MonthlyMenu(int id,String weekDate,String western,String asian,String vegg,String d1,String d2,String f1,String f2) {
@@ -60,6 +61,8 @@ public class MonthlyMenu {
 		return f2;
 	}
 	
+
+
 
 	
 }

@@ -142,33 +142,6 @@ public class C206_CaseStudyTest {
 
 }
 
-	@Before
-	public void setup() throws Exception {
-		i1 = new Items("1001", "Chicken Chop", "Western", "4.50");
-		i2 = new Items("1002", "Cripsy Chicken", "Western", "5.00");
-		i3 = new Items("1003", "Aglio olio Pasta", "Western", "3.50");
-
-		mm1 = new MonthlyMenu(1006, "02-09-2022", "Spaghetti", "Beef Noodles", "Spring roll", "Apple Juice",
-				"Orange Juice", "Apple", "Papaya");
-
-		mm2 = new MonthlyMenu(1008, "03-09-2022", "Burger", "Wanton Mee", "Salad bowl", "Watermelon Juice",
-				"Orange Juice", "Orange", "Honeydew");
-
-		mm3 = new MonthlyMenu(1010, "04-09-2022", "Tomato pasta", "Chicken rice", "Veggie Burger", "crysthanamum tea",
-				"Apple Juice", "Watermelon", "Pear");
-
-		mm4 = new MonthlyMenu(1011, "05-09-2022", "Chicken chop", "Fish soup with rice/noodles", "Mushroom pasta",
-				"Ribena", "Iced Lemon Tea", "Orange", "Apple");
-
-		mm5 = new MonthlyMenu(1009, "09-09-2022", "Fried fries", "Pork cutlets with rice", "Spring roll",
-				"Orange Juice", "Watermelon Juice", "Honeydew", "Pear");
-
-		weeklyList = new ArrayList<MonthlyMenu>();
-		itemList = new ArrayList<Items>();
-		orderList = new ArrayList<Order>();
-
-
-	}
 
 	@Test
 	public void testcreateAccount() { 
@@ -237,40 +210,108 @@ public class C206_CaseStudyTest {
 
 	@Test
 	public void testViewMonthlyMenu() {
-		// Test if Menu list is not null but empty -boundary
-		assertNotNull("Test if there is valid Menu arraylist to retrieve item", weeklyList);
+			// Test if Menu list is not null but empty -boundary
+			assertNotNull("Test if there is valid Menu arraylist to retrieve item", weeklyList);
+			
+			//test that the menu inside the menuList is empty, same as testout 
+			String allMenu = C206_CaseStudy.retrieveAllMenu(weeklyList);
+			String testOutput = "";
+			assertEquals("Check that ViewAllMenuList", testOutput, allMenu);
 
-		String allMenu = C206_CaseStudy.retrieveAllMenu(weeklyList);
-		String testOutput = "";
-		assertEquals("Check that ViewAllWeeklylist", testOutput, allMenu);
+			//Given an empty list, after adding 4 items, test if the size of the list is 4 - normal
+			C206_CaseStudy.addMonthlyMenu(weeklyList,mm1);
+			C206_CaseStudy.addMonthlyMenu(weeklyList,mm2);
+			C206_CaseStudy.addMonthlyMenu(weeklyList,mm3);
+			C206_CaseStudy.addMonthlyMenu(weeklyList,mm4);
+			
+			assertEquals("Test that Menu arraylist size is 4", 4, weeklyList.size());
+			
+			//check that test output you put is equal to you store inside the arrayList 
+			//if the add there is 4, then had to also the same for same output (4)
+			allMenu = C206_CaseStudy.retrieveAllMenu(weeklyList);
+			
+			
+			testOutput += String.format("%-10d %-20s %-20s %-30s %-25s %-20s %-20s %-20s %-20s\n",1006,"02-09-2022","Spaghetti","Beef Noodles","Spring roll","Apple Juice",
+					"Orange Juice","Apple","Papaya");
+			testOutput += String.format("%-10d %-20s %-20s %-30s %-25s %-20s %-20s %-20s %-20s\n",1008,"03-09-2022","Burger","Wanton Mee","Salad bowl","Watermelon Juice",
+					"Orange Juice","Orange","Honeydew" );
+			
+			testOutput += String.format("%-10d %-20s %-20s %-30s %-25s %-20s %-20s %-20s %-20s\n",1010,"04-09-2022","Tomato pasta","Chicken rice","Veggie Burger","crysthanamum tea",
+					"Apple Juice","Watermelon","Pear");
+			
+			testOutput += String.format("%-10d %-20s %-20s %-30s %-25s %-20s %-20s %-20s %-20s\n",1011,"05-09-2022","Chicken chop","Fish soup with rice/noodles","Mushroom pasta","Ribena",
+					"Iced Lemon Tea","Orange","Apple");
 
-		// Given an empty list, after adding 2 items, test if the size of the list is 2
-		// - normal
-		C206_CaseStudy.addMonthlyMenu(weeklyList, mm1);
-		C206_CaseStudy.addMonthlyMenu(weeklyList, mm2);
-		C206_CaseStudy.addMonthlyMenu(weeklyList, mm3);
-		C206_CaseStudy.addMonthlyMenu(weeklyList, mm4);
-		assertEquals("Test that Menu arraylist size is 4", 4, weeklyList.size());
+			
+		
+		
+			assertEquals("Test that ViewAllMenulist", testOutput, allMenu);
+			
+			
 
-		// check that test output you put is equal to you store inside the arrayList
-		// if the add there is 4, then had to also the same for same output (4)
-		allMenu = C206_CaseStudy.retrieveAllMenu(weeklyList);
-		testOutput = String.format("%-10d %-20s %-20s %-30s %-25s %-20s %-20s %-20s %-20s\n", 1006, "02-09-2022",
-				"Spaghetti", "Beef Noodles", "Spring roll", "Apple Juice", "Orange Juice", "Apple", "Papaya");
-		testOutput += String.format("%-10d %-20s %-20s %-30s %-25s %-20s %-20s %-20s %-20s\n", 1008, "03-09-2022",
-				"Burger", "Wanton Mee", "Salad bowl", "Watermelon Juice", "Orange Juice", "Orange", "Honeydew");
-
-		testOutput += String.format("%-10d %-20s %-20s %-30s %-25s %-20s %-20s %-20s %-20s\n", 1010, "04-09-2022",
-				"Tomato pasta", "Chicken rice", "Veggie Burger", "crysthanamum tea", "Apple Juice", "Watermelon",
-				"Pear");
-
-		testOutput += String.format("%-10d %-20s %-20s %-30s %-25s %-20s %-20s %-20s %-20s\n", 1011, "05-09-2022",
-				"Chicken chop", "Fish soup with rice/noodles", "Mushroom pasta", "Ribena", "Iced Lemon Tea", "Orange",
-				"Apple");
-
-		assertEquals("Test that ViewAllMenulist", testOutput, allMenu);
-
+			
 	}
+	@Test
+	public void testAddMenu() {
+		// Test if Menu list is not null but empty -boundary
+		assertNotNull("Check if there is valid Menu arraylist to add to", weeklyList);
+		
+		//Given an empty list, after adding 1 item, the size of the list is 1 - normal
+		C206_CaseStudy.addMonthlyMenu(weeklyList, mm1);
+		assertEquals("Check that Menu arraylist size is 1", 1, weeklyList.size());
+		
+		
+		//check that the menu added is same as the first item of the menu list 
+		assertSame("Check that Menu is added", mm1, weeklyList.get(0));
+		
+		//add another menu in the menuList
+		C206_CaseStudy.addMonthlyMenu(weeklyList, mm2);
+		
+		assertEquals("Check that the menu arrayList size is 2",2, weeklyList.size());
+		
+		//add another items
+		
+		C206_CaseStudy.addMonthlyMenu(weeklyList, mm3);
+		
+		//check that the menu added is the same as the third item in the menu List 
+		assertSame("Check that Menu is added is the same",mm3,weeklyList.get(2));
+		
+		//error condition 
+		
+		assertNotSame("Check that menu is not equal",mm2,weeklyList.get(0));
+		
+		//error condition 
+		assertNotEquals("Check that the size of menulist is not the same",4,weeklyList.size());
+		
+	}
+	
+	@Test
+	public void testDelete() {
+		// boundary
+		assertNotNull("test if there is valid Menu arraylist to delete from", weeklyList);
+		
+		//add an menu inside 
+		C206_CaseStudy.addMonthlyMenu(weeklyList, mm1);
+
+		//normal condition
+		Boolean delete = C206_CaseStudy.doDeleteMenu(weeklyList,1006);
+		
+		assertTrue("Test if the menu can be deleted?",delete);
+		
+		//error condition
+		delete = C206_CaseStudy.doDeleteMenu(weeklyList,1006);
+		assertFalse("Test if the same menu cannot be deleted again?",delete);
+		
+		
+		//error condition : delete non-exist one 
+		delete = C206_CaseStudy.doDeleteMenu(weeklyList,1001);
+		assertFalse("Test if the non-existing menu cannot be deleted?",delete);
+		
+
+
+		
+	}
+
 
 	@Test
 	public void testViewAllMenuItems() {

@@ -519,6 +519,7 @@ public class C206_CaseStudy {
 		weeklyList.add(menu3);
 		weeklyList.add(menu4);
 		weeklyList.add(menu5);
+		System.out.println("Menu added sucessful");
 	}
 
 	// view all and retrieve
@@ -543,33 +544,67 @@ public class C206_CaseStudy {
 		output += retrieveAllMenu(weeklyList);
 		System.out.println(output);
 	}
+	
+	public static MonthlyMenu inputMenu() {
+		int id = Helper.readInt("Enter menu id > ");
+		String date = Helper.readString("Enter the date > ");
+		String western = Helper.readString("Enter the western > ");
+		String asian = Helper.readString("Enter the asian> ");
+		String veg = Helper.readString("Enter the vegetarian > ");
+		String drink1 = Helper.readString("Enter the drink 1> ");
+		String drink2 = Helper.readString("Enter the drink 2> ");
+		String fruit1 = Helper.readString("Enter the fruit 1 > ");
+		String fruit2 = Helper.readString("Enter the fruit 2 > ");
+
+
+
+		MonthlyMenu mm= new MonthlyMenu(id, date, western,asian,veg,drink1,drink2,fruit1,fruit2);
+		return mm;
+
+
+	}
+
 
 	public static void addMonthlyMenu(ArrayList<MonthlyMenu> weeklyList, MonthlyMenu mm) {
 
 		weeklyList.add(mm);
-		System.out.println("Add the menu successful!");
+
 
 	}
 
-	// delete the menu
 
-	public static void deleteMenu(ArrayList<MonthlyMenu> weeklyList) {
-		int id = Helper.readInt("Enter menu id > ");
 
-		boolean isFound = false;
-		for (int i = 0; i < weeklyList.size(); i++) {
-			if (id == weeklyList.get(i).getID()) {
-				weeklyList.remove(i);
-				isFound = true;
+	//delete the menu
+	
+		public static boolean doDeleteMenu(ArrayList<MonthlyMenu> weeklyList,int id) {
+			boolean isFound = false;
+			
+			for(int i = 0; i < weeklyList.size();i++) {
+				if(id == weeklyList.get(i).getID()) {
+					weeklyList.remove(i);
+
+					//remove, then will set it to false
+					isFound = true;
+				}
 			}
+			return isFound;
+		}
+		
+		public static void deleteMenu(ArrayList<MonthlyMenu> weeklyList) {
+			int id = Helper.readInt("Enter menu id > ");
+			
+			Boolean isFound = doDeleteMenu(weeklyList,id);
+			
+			if(isFound == false) {
+				System.out.println("This menu does not exist");
+			}else {
+				System.out.println("This menu has been deleted sucessfully");
+			}
+			
+			
 		}
 
-		if (isFound == false) {
-			System.out.println("This menu does not exist");
-		} else {
-			System.out.println("This menu has been deleted sucessfully");
-		}
-	}
+
 
 	public static void createAccount(ArrayList<Account> accountList) {
 		// prompt user to enter username/password/role
