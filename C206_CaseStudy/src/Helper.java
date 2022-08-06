@@ -1,5 +1,3 @@
-// Version for AY2013/14 Sem 2
-
 import java.util.*;
 
 public class Helper {
@@ -9,7 +7,6 @@ public class Helper {
   public static String readString(String prompt) {
     System.out.print(prompt);
     return scan.nextLine();
-
   }
 
   public static int readInt(String prompt) {
@@ -243,4 +240,5 @@ public class Helper {
     return getDay(one) == getDay(two) && getMonth(one) == getMonth(two)
         && getYear(one) == getYear(two);
   }
+
 }

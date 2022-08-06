@@ -9,6 +9,7 @@ public class C206_CaseStudy {
 	private static final int OPTION_QUIT = 3;
 
 	public static void main(String[] args) {
+
 		// TODO Auto-generated method stub
 		ArrayList<Order> orderList = new ArrayList<Order>();
 
@@ -80,13 +81,12 @@ public class C206_CaseStudy {
 							C206_CaseStudy.viewAllMonthlyMenu(weeklyList);
 							choice = Helper.readInt("Enter Parent option > ");
 						} else if (choice == 2) {
+
 							C206_CaseStudy.addOrder(orderList);
 							choice = Helper.readInt("Enter Parent option > ");
-
 						} else if (choice == 3) {
 							C206_CaseStudy.viewLunchBox(orderList);
 							choice = Helper.readInt("Enter Parent option > ");
-
 						} else if (choice == 4) {
 							C206_CaseStudy.deleteLunchBoxOrder(orderList);
 							choice = Helper.readInt("Enter Parent option > ");
@@ -108,7 +108,6 @@ public class C206_CaseStudy {
 							C206_CaseStudy.viewAllMonthlyMenu(weeklyList);
 							C206_CaseStudy.addOrder(orderList);
 							choice = Helper.readInt("Enter Parent option > ");
-
 						} else if (choice == 3) {
 							C206_CaseStudy.viewLunchBox(orderList);
 							choice = Helper.readInt("Enter Parent option > ");
@@ -134,7 +133,6 @@ public class C206_CaseStudy {
 		System.out.println("3. Quit");
 
 	}
-
 	public static void addOrder(ArrayList<Order> orderList) {
 
 		int addOption = 0;
@@ -612,5 +610,4 @@ public class C206_CaseStudy {
 		}
 
 	}
-
 }

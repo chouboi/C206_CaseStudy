@@ -15,14 +15,14 @@ public class Order {
 		this.drink = drink;
 		this.fruit = fruit;
 	}
-
 	public int getID() {
 		return ID;
 	}
-
+	
 	public String getDate() {
 		return date;
 	}
+
 
 	public String getMeal() {
 		return meal;
@@ -32,14 +32,16 @@ public class Order {
 		return drink;
 	}
 
+
 	public String getFruit() {
 		return fruit;
 	}
-
+	
+	
 	public boolean getIsAvailable() {
 		return isAvailable;
 	}
-
+	
 	public void setIsAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
 	}

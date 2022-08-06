@@ -25,6 +25,7 @@ public class C206_CaseStudyTest {
 	private ArrayList<MonthlyMenu> weeklyList;
 	private ArrayList<Items> itemList;
 	private ArrayList<Order> orderList;
+	
 
 	private Account A1;
 	private Account A2;
@@ -42,17 +43,34 @@ public class C206_CaseStudyTest {
 		A3 = new Account("chouzhen", "9876", "Admin");
 		A4 = new Account("Jarrett", "5678", "Parent");
 		A5 = new Account("Jeva", "9753", "Parent");
-		
-		accountList= new ArrayList<Account>();
-
 
 		o1 = new Order(1001, "01-09-2022", "Spaghetti", "Apple Juice", "Apple");
 		o2 = new Order(1002, "01-10-2022", "Beef noodles", "Iced Lemon Tea", "Pear");
 		o3 = new Order(1003, "01-11-2022", "Spring roll", "Orange Juice", "Papaya");
 
+		i1 = new Items("1001", "Chicken Chop", "Western", "4.50");
+		i2 = new Items("1002", "Cripsy Chicken", "Western", "5.00");
+		i3 = new Items("1003", "Aglio olio Pasta", "Western", "3.50");
+
+		mm1 = new MonthlyMenu(1006, "02-09-2022", "Spaghetti", "Beef Noodles", "Spring roll", "Apple Juice",
+				"Orange Juice", "Apple", "Papaya");
+
+		mm2 = new MonthlyMenu(1008, "03-09-2022", "Burger", "Wanton Mee", "Salad bowl", "Watermelon Juice",
+				"Orange Juice", "Orange", "Honeydew");
+
+		mm3 = new MonthlyMenu(1010, "04-09-2022", "Tomato pasta", "Chicken rice", "Veggie Burger", "crysthanamum tea",
+				"Apple Juice", "Watermelon", "Pear");
+
+		mm4 = new MonthlyMenu(1011, "05-09-2022", "Chicken chop", "Fish soup with rice/noodles", "Mushroom pasta",
+				"Ribena", "Iced Lemon Tea", "Orange", "Apple");
+
+		mm5 = new MonthlyMenu(1009, "09-09-2022", "Fried fries", "Pork cutlets with rice", "Spring roll",
+				"Orange Juice", "Watermelon Juice", "Honeydew", "Pear");
+
+		weeklyList = new ArrayList<MonthlyMenu>();
+		itemList = new ArrayList<Items>();
 		orderList = new ArrayList<Order>();
-
-
+		accountList= new ArrayList<Account>();
 	}
 
 	// 3rd func
@@ -96,8 +114,7 @@ public class C206_CaseStudyTest {
 	assertEquals("Test that Items arraylist size is 3?", 3, orderList.size());
 	assertSame("Test that Item is added same as 3rd item of the list?", o3, orderList.get(2));
 
-}
-
+} 
 	@Test
 	public void testDeleteOrder() {
 
@@ -343,16 +360,7 @@ public class C206_CaseStudyTest {
 		orderList = null;
 		weeklyList = null;
 		accountList = null;
-	}
-
-
-	public void testAddMenu() {
-
-	}
-
-	public void testDelete() {
-
-	}
+	}	
 
 	
 }
