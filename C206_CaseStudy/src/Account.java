@@ -21,7 +21,7 @@ public class Account {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+	// get available
 	public boolean getIsAvailable() {
 		return isAvailable;
 	}
